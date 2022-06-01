@@ -15,7 +15,7 @@ const ProductDetailPage = props => {
     )
 }
 
-// NextJS-Server-Side-Dynamic-Link-Parameter-Extraction
+// NextJS-getStaticProps-getStaticPathsServer-Side-Dynamic-Link-Parameter-Extraction
 // Server side dynamic link parameter extraction
 export const getStaticProps = async (context) => {
     const { params } = context;
@@ -35,6 +35,8 @@ export const getStaticProps = async (context) => {
     };
 };
 
+// NextJS-getStaticProps-getStaticPathsServer-Side-Dynamic-Link-Parameter-Extraction
+// Server side dynamic link parameter extraction
 export const getStaticPaths = async () => {
     return {
         paths: [
