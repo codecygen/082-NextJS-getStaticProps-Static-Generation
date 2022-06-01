@@ -38,6 +38,13 @@ export const getStaticProps = async (context) => {
 // NextJS-getStaticProps-getStaticPathsServer-Side-Dynamic-Link-Parameter-Extraction
 // Server side dynamic link parameter extraction
 export const getStaticPaths = async () => {
+    // we have to create this section because, for dynamic links,
+    // NextJS does not know how many pages need to be created
+    // Normally for other pages production server pregenerates all pages
+    // when you run 'npm run build'. But for dynamic links, there could
+    // be thousands of pages like this. That is the reason, NextJS for these
+    // cases, instead of created thousands of pages ahead of time, only
+    // generates up in advance when the request is made.
     return {
         paths: [
             { params: { pid: 'p1' } },
