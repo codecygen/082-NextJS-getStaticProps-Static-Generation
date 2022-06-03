@@ -27,6 +27,14 @@ const ProductDetailPage = props => {
     )
 }
 
+const getData = async () => {
+    const filePath = path.join(process.cwd(), 'data/dummy-backend.json');
+    const jsonData = await fs.readFile(filePath);
+    const data = JSON.parse(jsonData);
+
+    return data;
+};
+
 // NextJS-getStaticProps-getStaticPathsServer-Dynamic-Link-Parameter-Extraction
 // Server side dynamic link parameter extraction
 export const getStaticProps = async (context) => {
@@ -35,11 +43,20 @@ export const getStaticProps = async (context) => {
     // pid is coming from the page Component File.
     const productId = params.pid;
 
-    const filePath = path.join(process.cwd(), 'data/dummy-backend.json');
-    const jsonData = await fs.readFile(filePath);
-    const data = JSON.parse(jsonData);
+    const data = await getData();
 
     const product = data.products.find(product => product.id === productId);
+
+    // If we try to load http://localhost:3000/p4
+    // Since it does not exist and fallback is set to true
+    // page won't be able to be generated on the fly because
+    // the data for p4 does not exist. Normally instead of throwing
+    // 404 page error, website shows another error.
+    // Error: Failed to load static props
+    // To prevent it and load the 404 page, this section is needed.
+    if (!product) {
+        return { notFound: true };
+    }
 
     return {
         props: {
@@ -62,11 +79,26 @@ export const getStaticPaths = async () => {
     // Here the idea is to only include the mostly visited page(s) so that their
     // static html code will be pregenerated.
     // fallback has to be set to "true" to achieve this.
-    return {
-        paths: [
-            { params: { pid: 'p1' } }
-        ],
 
+
+    // instead of manually typing pids down below in the return section, 
+    // write it like this,
+    const data = await getData();
+    const ids = data.products.map(product => product.id);
+
+    const pathsWithParams = ids.map(id => ({ params: { pid: id } }));
+
+    return {
+        // instead of manually typing pids, write it like this,
+        // paths: [
+        //     { params: { pid: 'p1' } }
+        // ],
+
+        paths: pathsWithParams,
+
+        // fallback now states that even if we request page
+        // http://localhost:3000/p4, try to load it on the fly and
+        // don't put 404 page.
         fallback: true
         // Alternatively
         // fallback: 'blocking'
