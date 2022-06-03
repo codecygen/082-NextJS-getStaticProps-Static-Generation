@@ -14,7 +14,7 @@ const HomePage = (props) => {
       {products.map(product => (
         <li
           key={product.id}>
-          <Link href={`/${product.id}`}>
+          <Link href={`/products/${product.id}`}>
             {product.title}
           </Link>
         </li>
@@ -23,7 +23,7 @@ const HomePage = (props) => {
   );
 };
 
-// NextJS-getStaticProps-Server-Side-Rendering
+// NextJS-getStaticProps-Static-Side-Rendering
 // Code in getStaticProps is not shipped to the client
 export const getStaticProps = async () => {
   const filePath = path.join(process.cwd(), 'data/dummy-backend.json');
