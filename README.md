@@ -1,5 +1,11 @@
 This is a simple Next.js app.
 
+Pages created in this app are;
+- http://localhost:3000
+- http://localhost:3000/aras, which would generate dynamic uid page
+- http://localhost:3000/products/p2, which would generate p2 product id page
+
+
 When you run "npm run dev" server files are optimized and ".next" folder gets created.
 "npm start" starts the server with the files under ".next" folder. These files are for production.
 

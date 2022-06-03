@@ -8,12 +8,12 @@ const ProductDetailPage = props => {
     const { loadedProduct } = props;
 
     // This fallback content section is needed because if 
-    // you manually type http://localhost:3000/p3 to browser, because
+    // you manually type http://localhost:3000/products/p3 to browser, because
     // in getStaticPaths, p3 is not defined, the webpage
     // will be created on the fly upon request. By putting this
     // you allow Next.JS enough time to generate p3 page upon manual
     // typing on the browser, instead of directing to the page with link
-    // clicking. For link clicking http://localhost:3000/p3 will open
+    // clicking. For link clicking http://localhost:3000/products/p3 will open
     // even without this section.
     if (!loadedProduct) {
         return <p>Loading...</p>
@@ -47,7 +47,7 @@ export const getStaticProps = async (context) => {
 
     const product = data.products.find(product => product.id === productId);
 
-    // If we try to load http://localhost:3000/p4
+    // If we try to load http://localhost:3000/products/p4
     // Since it does not exist and fallback is set to true
     // page won't be able to be generated on the fly because
     // the data for p4 does not exist. Normally instead of throwing
@@ -97,7 +97,7 @@ export const getStaticPaths = async () => {
         paths: pathsWithParams,
 
         // fallback now states that even if we request page
-        // http://localhost:3000/p4, try to load it on the fly and
+        // http://localhost:3000/products/p4, try to load it on the fly and
         // don't put 404 page.
         fallback: true
         // Alternatively
