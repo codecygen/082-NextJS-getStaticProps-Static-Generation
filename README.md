@@ -6,4 +6,4 @@ When you run "npm run dev" server files are optimized and ".next" folder gets cr
 ## Keywords:
 - **NextJS-getStaticProps-Server-Side-Rendering**
 - **NextJS-ISR-Incremental-Static-Regeneration**
-- **NextJS-getStaticProps-getStaticPathsServer-Side-Dynamic-Link-Parameter-Extraction**, there is a possibility to extract the data through getStaticProps, instead of useRouter's router.query.parameter option. When you use useRouter hook, the dynamic link data is extracted from the client side, whereas with the "context" argument of getStaticProps function, you are able to extract the data from server side.
+- **NextJS-getStaticProps-getStaticPathsServer-Dynamic-Link-Parameter-Extraction**, there is a possibility to extract the data through getStaticProps, instead of useRouter's router.query.parameter option. When you use useRouter hook, the dynamic link data is extracted from the client side, whereas with the "context" argument of getStaticProps function, you are able to extract the data from server side.
