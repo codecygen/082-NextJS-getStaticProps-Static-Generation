@@ -1,31 +1,40 @@
 // React-Simple-Vercel-Hook-Stale-While-Revalidate-SWR
+// For a new project, if you need to install SWR (Stale-While-Revalidate) write command
+// - npm i swr
+
+// The name “SWR” is derived from stale-while-revalidate, 
+// a HTTP cache invalidation strategy popularized by 
+// HTTP RFC 5861. SWR is a strategy to first return the 
+// data from cache (stale), then send the fetch request (revalidate), 
+// and finally come with the up-to-date data.
 
 import { useEffect, useState } from "react";
+import useSWR from 'swr';
 
 const Descriptions = () => {
     const [descriptions, setDescriptions] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+
+    const fetchLink = 'https://api.publicapis.org/entries';
+
+    const fetcher = (url) => fetch(url).then(res => res.json());
+
+    const { data, error } = useSWR(fetchLink, fetcher);
 
     useEffect(() => {
-        setIsLoading(true);
-        fetch('https://api.publicapis.org/entries')
-            .then(res => res.json())
-            .then(data => {
-                const allDescriptions = [];
+        const allDescriptions = [];
+        if (data) {
+            data.entries.map(entry => allDescriptions.push(entry.Description));
+        }
 
-                data.entries.map(entry => allDescriptions.push(entry.Description));
+        setDescriptions(allDescriptions);
+    }, [data]);
 
-                setDescriptions(allDescriptions);
-                setIsLoading(false);
-            }).catch(err => console.log(err));
-    }, []);
-
-    if (isLoading) {
-        return <p>Loading...</p>
+    if (error) {
+        return <p>Failed to load!</p>
     }
 
-    if (!descriptions) {
-        return <p>No data yet!</p>
+    if (!data || !descriptions) {
+        return <p>Loading...</p>
     }
 
     const descriptionList = descriptions.map(description => (
