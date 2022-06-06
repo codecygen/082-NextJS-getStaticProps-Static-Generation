@@ -10,16 +10,37 @@ const HomePage = (props) => {
   const { products } = props;
 
   return (
-    <ul>
-      {products.map(product => (
-        <li
-          key={product.id}>
-          <Link href={`/products/${product.id}`}>
-            {product.title}
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul>
+        {products.map(product => (
+          <li
+            key={product.id}>
+            <Link href={`/products/${product.id}`}>
+              {product.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
+
+      <h1>Other Links</h1>
+      <ul>
+          <li>
+            <Link href='/populations'>
+              Populations
+            </Link>
+          </li>
+          <li>
+            <Link href='/descriptions'>
+              Descriptions
+            </Link>
+          </li>
+          <li>
+            <Link href='/holidays'>
+              Holidays
+            </Link>
+          </li>
+      </ul>
+    </>
   );
 };
 
