@@ -16,7 +16,8 @@ export const getServerSideProps = async (context) => {
 
   return {
     props: {
-      id: `userid-${userId}`
+      id: `userid-${userId}`,
+      // hasError: true
     },
 
     // notFound: true,
