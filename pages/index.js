@@ -55,7 +55,7 @@ export const getStaticProps = async () => {
   if (!data) {
     return {
       redirect: {
-        destiunation: '/no-data',
+        destination: '/no-data',
       }
     }
   }

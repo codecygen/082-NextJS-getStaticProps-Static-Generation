@@ -16,15 +16,20 @@ export default UserProfilePage;
 // getServerSideProps is more pertinent than getStaticProps
 export const getServerSideProps = async (context) => {
 
-    // In getServerSideProps, unlike getStaticProps
-    // we are not only able to reach to a parameter called params,
-    // but also request and response data.
-    // These are default Node.js request and response object.
-    const { params, req, res } = context;
+  // In getServerSideProps, unlike getStaticProps
+  // we are not only able to reach to a parameter called params,
+  // but also request and response data.
+  // These are default Node.js request and response object.
+  const { params, req, res } = context;
 
-    return {
-        props: {
-            username: 'Aras'
-        },
-    };
+  return {
+    props: {
+      username: 'Aras'
+    },
+
+    // notFound: true,
+    // redirect: {
+    //   destination: '/no-data',
+    // }
+  };
 };

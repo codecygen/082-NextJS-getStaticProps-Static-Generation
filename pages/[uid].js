@@ -10,13 +10,18 @@ export default UserIdPage;
 // Here since the page is created on the fly, we don't need
 // getStaticPaths
 export const getServerSideProps = async (context) => {
-    const { params } = context;
+  const { params } = context;
 
-    const userId = params.uid;
+  const userId = params.uid;
 
-    return {
-        props: {
-            id: `userid-${userId}`
-        }
-    };
+  return {
+    props: {
+      id: `userid-${userId}`
+    },
+
+    // notFound: true,
+    // redirect: {
+    //   destination: '/no-data',
+    // }
+  };
 };
