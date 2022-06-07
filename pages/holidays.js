@@ -1,4 +1,4 @@
-// NextJS-Server-Side-Data-Fetching
+// NextJS-Both-Client-Side-And-Server-Side-Data-Fetching
 // Both client and server side rendering can sometimes lead to the
 // best possible user xp because you have some data right from the
 // start and then you update it with client side React hooks.
