@@ -12,7 +12,7 @@ Pages created in this app are;
 - http://localhost:3000/holidays, uses fetch API on server side.
 
 
-When you run "npm run dev" server files are optimized and ".next" folder gets created.
+When you run "npm run build" server files are optimized and ".next" folder gets created.
 "npm start" starts the server with the files under ".next" folder. These files are for production.
 
 ## Keywords:
