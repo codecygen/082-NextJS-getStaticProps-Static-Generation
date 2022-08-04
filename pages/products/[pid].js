@@ -73,7 +73,7 @@ export const getStaticPaths = async () => {
     // Normally for other pages production server pregenerates all pages
     // when you run 'npm run build'. But for dynamic links, there could
     // be thousands of pages like this. That is the reason, NextJS for these
-    // cases, instead of created thousands of pages ahead of time, only
+    // cases, instead of creating thousands of pages ahead of time, only
     // generates up in advance when the request is made.
 
     // Here the idea is to only include the mostly visited page(s) so that their
